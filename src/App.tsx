@@ -19,7 +19,7 @@ function App() {
 	return (
 		<>
 			<div>
-				<a className="alogo" href="https://qwerty.xyz" target="_blank">
+				<a className="alogo" href="https://qwerty.xyz/exercises" target="_blank">
 					<img src="https://qwerty.xyz/favicon.png" className="logo spin" alt="Qwerty.xyz logo" />
 					<img src="https://qwerty.xyz/favicon.png" className="logo static" alt="Qwerty.xyz logo" />
 				</a>
