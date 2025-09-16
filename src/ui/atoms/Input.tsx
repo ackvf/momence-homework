@@ -1,6 +1,6 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
-export const Button = styled.button`
+export const Input = styled.input`
 	border-radius: 8px;
 	border: 1px solid transparent;
 	padding: 0.6em 1.2em;
@@ -18,4 +18,4 @@ export const Button = styled.button`
 	}
 `
 
-export default Button
+export default Input
