@@ -1,33 +1,20 @@
-import { useEffect, useReducer, useState } from 'react'
+import { useReducer } from 'react'
 import styled from 'styled-components'
 
-import fetchCurrencyRatesGET, { type CurrencyRate } from '@/core/services/fetchCurrencyRatesGET'
-import { match, highlight } from '@/core/utils'
-
+import { useCurrencyRates } from '@/core/services/useCurrencyRates'
+import { highlight, match } from '@/core/utils'
 import { Card, Hint, Input } from '@/ui'
 
 import './App.css'
 
 
 function App() {
+	const { data: rates = [], isLoading, error } = useCurrencyRates()
 
-	const [loading, stopLoading] = useReducer(() => false, true)
-	const [rates, setRates] = useState<CurrencyRate[]>([])
-	const [error, setError] = useState<string | null>(null)
 	const [amount, setAmount] = useReducer((_, onChange: React.ChangeEvent<HTMLInputElement>) => Number(onChange.target.value), 0)
 	const [search, setSearch] = useReducer((_, onChange: React.ChangeEvent<HTMLInputElement>) => onChange.target.value, '')
 
 	const filtered = rates.filter(rate => match(rate, search))
-
-	useEffect(() => {
-		fetchCurrencyRatesGET()
-			.then(setRates)
-			.catch(err => {
-				setError('Failed to fetch currency rates (GET)')
-				console.error('Failed to fetch currency rates (GET)', err)
-			})
-			.finally(stopLoading)
-	}, [])
 
 	return (
 		<>
@@ -49,9 +36,9 @@ function App() {
 				</p>
 			</Card>
 			<Card>
-				{loading && <p>Loading currency rates...</p>}
-				{error && <p style={{ color: 'red' }}>{error}</p>}
-				{!loading && !error && (
+				{isLoading && <p>Loading currency rates...</p>}
+				{error && <p style={{ color: 'red' }}>{error instanceof Error ? error.message : String(error)}</p>}
+				{!isLoading && !error && (
 					<List>
 						{filtered
 							.map(rate => (

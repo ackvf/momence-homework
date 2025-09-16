@@ -27,9 +27,11 @@ export default tseslint.config([
 			'semi': ['error', 'never'],
 			'quotes': ['error', 'single'],
 			"import/order": ["error", {
-				"newlines-between": "always",
 				"alphabetize": { "order": "asc", "caseInsensitive": true },
+				"distinctGroup": false,
+				"newlines-between": "always",
 				"groups": ["builtin", "external", "internal", ["parent", "sibling", "index"]],
+				"pathGroupsExcludedImportTypes": [],
 				"pathGroups": [
 					{
 						"pattern": "react",

@@ -1,5 +1,4 @@
-import type { CurrencyRate } from '@/core/services/fetchCurrencyRatesGET'
-
+import type { CurrencyRate } from '@/core/services/useCurrencyRates'
 import { Highlighted } from '@/ui'
 
 /** Check if a rate matches the search string. */
